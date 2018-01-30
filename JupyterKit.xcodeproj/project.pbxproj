@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA6376BA201FE8DC00D3EE43 /* LoggerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA6376B7201FE8D200D3EE43 /* LoggerKit.framework */; };
+		AA6376BB201FE8DC00D3EE43 /* LoggerKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AA6376B7201FE8D200D3EE43 /* LoggerKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AA6427711FDD8AA6002877D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6427701FDD8AA6002877D1 /* AppDelegate.swift */; };
 		AA6427751FDD8AA6002877D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA6427741FDD8AA6002877D1 /* Assets.xcassets */; };
 		AA6427781FDD8AA6002877D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA6427761FDD8AA6002877D1 /* Main.storyboard */; };
@@ -17,6 +19,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		AA6376B6201FE8D200D3EE43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA6376B1201FE8D100D3EE43 /* LoggerKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AABBD9A41E5761BD00AE5B46;
+			remoteInfo = LoggerKit;
+		};
+		AA6376B8201FE8D200D3EE43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA6376B1201FE8D100D3EE43 /* LoggerKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AA912BE01EE96C56002DD639;
+			remoteInfo = LoggerKitWatch;
+		};
+		AA6376BC201FE8DC00D3EE43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA6376B1201FE8D100D3EE43 /* LoggerKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = AABBD99C1E5761BD00AE5B46;
+			remoteInfo = LoggerKit;
+		};
 		AAE463391FDDB43F0078C151 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AA6427651FDD8AA6002877D1 /* Project object */;
@@ -34,6 +57,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				AAE4633C1FDDB43F0078C151 /* JupyterKit.framework in Embed Frameworks */,
+				AA6376BB201FE8DC00D3EE43 /* LoggerKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -42,6 +66,7 @@
 
 /* Begin PBXFileReference section */
 		AA3BADF9201E70000082CE06 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		AA6376B1201FE8D100D3EE43 /* LoggerKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LoggerKit.xcodeproj; path = ../LoggerKit/LoggerKit.xcodeproj; sourceTree = "<group>"; };
 		AA64276D1FDD8AA6002877D1 /* Jupyter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jupyter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA6427701FDD8AA6002877D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA6427741FDD8AA6002877D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -60,6 +85,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAE4633B1FDDB43F0078C151 /* JupyterKit.framework in Frameworks */,
+				AA6376BA201FE8DC00D3EE43 /* LoggerKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,9 +99,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA6376B2201FE8D100D3EE43 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA6376B7201FE8D200D3EE43 /* LoggerKit.framework */,
+				AA6376B9201FE8D200D3EE43 /* LoggerKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		AA6427641FDD8AA6002877D1 = {
 			isa = PBXGroup;
 			children = (
+				AA6376B1201FE8D100D3EE43 /* LoggerKit.xcodeproj */,
 				AA3BADF9201E70000082CE06 /* README.md */,
 				AA64276F1FDD8AA6002877D1 /* Jupyter */,
 				AAE463351FDDB43F0078C151 /* JupyterKit */,
@@ -140,6 +176,7 @@
 			);
 			dependencies = (
 				AAE4633A1FDDB43F0078C151 /* PBXTargetDependency */,
+				AA6376BD201FE8DC00D3EE43 /* PBXTargetDependency */,
 			);
 			name = Jupyter;
 			productName = Jupyter;
@@ -189,7 +226,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AA6427681FDD8AA6002877D1 /* Build configuration list for PBXProject "Jupyter" */;
+			buildConfigurationList = AA6427681FDD8AA6002877D1 /* Build configuration list for PBXProject "JupyterKit" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -200,6 +237,12 @@
 			mainGroup = AA6427641FDD8AA6002877D1;
 			productRefGroup = AA64276E1FDD8AA6002877D1 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = AA6376B2201FE8D100D3EE43 /* Products */;
+					ProjectRef = AA6376B1201FE8D100D3EE43 /* LoggerKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				AA64276C1FDD8AA6002877D1 /* Jupyter */,
@@ -207,6 +250,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		AA6376B7201FE8D200D3EE43 /* LoggerKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = LoggerKit.framework;
+			remoteRef = AA6376B6201FE8D200D3EE43 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AA6376B9201FE8D200D3EE43 /* LoggerKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = LoggerKit.framework;
+			remoteRef = AA6376B8201FE8D200D3EE43 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		AA64276B1FDD8AA6002877D1 /* Resources */ = {
@@ -248,6 +308,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		AA6376BD201FE8DC00D3EE43 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LoggerKit;
+			targetProxy = AA6376BC201FE8DC00D3EE43 /* PBXContainerItemProxy */;
+		};
 		AAE4633A1FDDB43F0078C151 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = AAE463331FDDB43F0078C151 /* JupyterKit */;
@@ -460,7 +525,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AA6427681FDD8AA6002877D1 /* Build configuration list for PBXProject "Jupyter" */ = {
+		AA6427681FDD8AA6002877D1 /* Build configuration list for PBXProject "JupyterKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA64277B1FDD8AA6002877D1 /* Debug */,

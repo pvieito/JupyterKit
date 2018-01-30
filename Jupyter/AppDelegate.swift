@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import LoggerKit
 import JupyterKit
 
 @NSApplicationMain
@@ -23,7 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             try JupyterManager.shared.openNotebook()
         }
         catch {
-            print("[x] \(error)")
+            Logger.log(error: error)
         }
     }
     
@@ -31,10 +32,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         do {
             try JupyterManager.shared.stopNotebooks()
-            print("[ ] Jupyter has been terminated.")
+            Logger.log(info: "Jupyter has been terminated.")
         }
         catch {
-            print("[x] \(error)")
+            Logger.log(error: error)
         }
     }
 }
