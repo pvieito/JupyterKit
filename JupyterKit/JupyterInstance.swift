@@ -12,15 +12,23 @@ import Cocoa
 public struct JupyterInstance: Codable {
     public let url: URL
     public let token: String
+    public let pid: Int
+    public let port: Int
 
-    let secure: Bool
+    public let secure: Bool
+    public let password: Bool
+
     let hostname: String
-    let pid: Int
-    let password: Bool
-    let port: Int
-
     let base_url: String
     let notebook_dir: String
+    
+    public var identifier: String {
+        return "\(self.hostname):\(self.port)"
+    }
+    
+    public var notebookDirectory: URL {
+        return URL(fileURLWithPath: self.notebook_dir)
+    }
     
     public func open() {
         NSWorkspace.shared.open(url)

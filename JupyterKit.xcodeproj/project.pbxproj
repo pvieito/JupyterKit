@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		AA6376BA201FE8DC00D3EE43 /* LoggerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA6376B7201FE8D200D3EE43 /* LoggerKit.framework */; };
 		AA6376BB201FE8DC00D3EE43 /* LoggerKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AA6376B7201FE8D200D3EE43 /* LoggerKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AA6376C8201FEF9800D3EE43 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6376C7201FEF9800D3EE43 /* main.swift */; };
+		AA6376DD201FF09700D3EE43 /* JupyterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE463341FDDB43F0078C151 /* JupyterKit.framework */; };
+		AA6376DE201FF09700D3EE43 /* CommandLineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA6376DB201FF08E00D3EE43 /* CommandLineKit.framework */; };
+		AA6376DF201FF09700D3EE43 /* LoggerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA6376B7201FE8D200D3EE43 /* LoggerKit.framework */; };
 		AA6427711FDD8AA6002877D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6427701FDD8AA6002877D1 /* AppDelegate.swift */; };
 		AA6427751FDD8AA6002877D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA6427741FDD8AA6002877D1 /* Assets.xcassets */; };
 		AA6427781FDD8AA6002877D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA6427761FDD8AA6002877D1 /* Main.storyboard */; };
@@ -40,6 +44,13 @@
 			remoteGlobalIDString = AABBD99C1E5761BD00AE5B46;
 			remoteInfo = LoggerKit;
 		};
+		AA6376DA201FF08E00D3EE43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA6376D6201FF08E00D3EE43 /* CommandLineKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5D06884319674D7D00BBFAAC;
+			remoteInfo = CommandLineKit;
+		};
 		AAE463391FDDB43F0078C151 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AA6427651FDD8AA6002877D1 /* Project object */;
@@ -50,6 +61,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		AA6376C3201FEF9800D3EE43 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		AA6427921FDD939C002877D1 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -67,6 +87,10 @@
 /* Begin PBXFileReference section */
 		AA3BADF9201E70000082CE06 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		AA6376B1201FE8D100D3EE43 /* LoggerKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LoggerKit.xcodeproj; path = ../LoggerKit/LoggerKit.xcodeproj; sourceTree = "<group>"; };
+		AA6376C5201FEF9800D3EE43 /* JupyterTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = JupyterTool; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA6376C7201FEF9800D3EE43 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		AA6376CD201FEFC400D3EE43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA6376D6201FF08E00D3EE43 /* CommandLineKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CommandLineKit.xcodeproj; path = ../CommandLineKit/CommandLineKit.xcodeproj; sourceTree = "<group>"; };
 		AA64276D1FDD8AA6002877D1 /* Jupyter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jupyter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA6427701FDD8AA6002877D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA6427741FDD8AA6002877D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,6 +104,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AA6376C2201FEF9800D3EE43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA6376DD201FF09700D3EE43 /* JupyterKit.framework in Frameworks */,
+				AA6376DE201FF09700D3EE43 /* CommandLineKit.framework in Frameworks */,
+				AA6376DF201FF09700D3EE43 /* LoggerKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA64276A1FDD8AA6002877D1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -108,14 +142,41 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		AA6376C6201FEF9800D3EE43 /* JupyterTool */ = {
+			isa = PBXGroup;
+			children = (
+				AA6376C7201FEF9800D3EE43 /* main.swift */,
+				AA6376CD201FEFC400D3EE43 /* Info.plist */,
+			);
+			path = JupyterTool;
+			sourceTree = "<group>";
+		};
+		AA6376D7201FF08E00D3EE43 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA6376DB201FF08E00D3EE43 /* CommandLineKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AA6376DC201FF09700D3EE43 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AA6427641FDD8AA6002877D1 = {
 			isa = PBXGroup;
 			children = (
+				AA6376D6201FF08E00D3EE43 /* CommandLineKit.xcodeproj */,
 				AA6376B1201FE8D100D3EE43 /* LoggerKit.xcodeproj */,
 				AA3BADF9201E70000082CE06 /* README.md */,
 				AA64276F1FDD8AA6002877D1 /* Jupyter */,
 				AAE463351FDDB43F0078C151 /* JupyterKit */,
+				AA6376C6201FEF9800D3EE43 /* JupyterTool */,
 				AA64276E1FDD8AA6002877D1 /* Products */,
+				AA6376DC201FF09700D3EE43 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -124,6 +185,7 @@
 			children = (
 				AA64276D1FDD8AA6002877D1 /* Jupyter.app */,
 				AAE463341FDDB43F0078C151 /* JupyterKit.framework */,
+				AA6376C5201FEF9800D3EE43 /* JupyterTool */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -163,6 +225,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		AA6376C4201FEF9800D3EE43 /* JupyterTool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA6376CC201FEF9800D3EE43 /* Build configuration list for PBXNativeTarget "JupyterTool" */;
+			buildPhases = (
+				AA6376C1201FEF9800D3EE43 /* Sources */,
+				AA6376C2201FEF9800D3EE43 /* Frameworks */,
+				AA6376C3201FEF9800D3EE43 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JupyterTool;
+			productName = JupyterTools;
+			productReference = AA6376C5201FEF9800D3EE43 /* JupyterTool */;
+			productType = "com.apple.product-type.tool";
+		};
 		AA64276C1FDD8AA6002877D1 /* Jupyter */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA64277D1FDD8AA6002877D1 /* Build configuration list for PBXNativeTarget "Jupyter" */;
@@ -207,10 +286,14 @@
 		AA6427651FDD8AA6002877D1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0910;
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = "Pedro José Pereira Vieito";
 				TargetAttributes = {
+					AA6376C4201FEF9800D3EE43 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
 					AA64276C1FDD8AA6002877D1 = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
@@ -239,6 +322,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = AA6376D7201FF08E00D3EE43 /* Products */;
+					ProjectRef = AA6376D6201FF08E00D3EE43 /* CommandLineKit.xcodeproj */;
+				},
+				{
 					ProductGroup = AA6376B2201FE8D100D3EE43 /* Products */;
 					ProjectRef = AA6376B1201FE8D100D3EE43 /* LoggerKit.xcodeproj */;
 				},
@@ -247,6 +334,7 @@
 			targets = (
 				AA64276C1FDD8AA6002877D1 /* Jupyter */,
 				AAE463331FDDB43F0078C151 /* JupyterKit */,
+				AA6376C4201FEF9800D3EE43 /* JupyterTool */,
 			);
 		};
 /* End PBXProject section */
@@ -264,6 +352,13 @@
 			fileType = wrapper.framework;
 			path = LoggerKit.framework;
 			remoteRef = AA6376B8201FE8D200D3EE43 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AA6376DB201FF08E00D3EE43 /* CommandLineKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CommandLineKit.framework;
+			remoteRef = AA6376DA201FF08E00D3EE43 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -288,6 +383,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AA6376C1201FEF9800D3EE43 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA6376C8201FEF9800D3EE43 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA6427691FDD8AA6002877D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -332,6 +435,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		AA6376C9201FEF9800D3EE43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
+				DEVELOPMENT_TEAM = T7MC635YG5;
+				INFOPLIST_FILE = JupyterTool/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx";
+				LIBRARY_SEARCH_PATHS = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pvieito.JupyterTool;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		AA6376CA201FEF9800D3EE43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
+				DEVELOPMENT_TEAM = T7MC635YG5;
+				INFOPLIST_FILE = JupyterTool/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx";
+				LIBRARY_SEARCH_PATHS = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pvieito.JupyterTool;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
 		AA64277B1FDD8AA6002877D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -525,6 +658,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AA6376CC201FEF9800D3EE43 /* Build configuration list for PBXNativeTarget "JupyterTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA6376C9201FEF9800D3EE43 /* Debug */,
+				AA6376CA201FEF9800D3EE43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AA6427681FDD8AA6002877D1 /* Build configuration list for PBXProject "JupyterKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
