@@ -25,6 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         catch {
             Logger.log(error: error)
+            NSApplication.shared.presentError(error)
         }
     }
     
@@ -36,6 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         catch {
             Logger.log(error: error)
+            NSApplication.shared.presentError(error)
         }
     }
 }
