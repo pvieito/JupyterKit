@@ -47,14 +47,19 @@ do {
     
     for notebook in notebooks {
         Logger.log(success: "Notebook “\(notebook.identifier)”")
-        Logger.log(info: "Directory: \(notebook.notebookDirectory.path)")
-        Logger.log(info: "URL: \(notebook.url.absoluteURL)")
-        Logger.log(info: "Port: \(notebook.port)")
-        Logger.log(info: "Secure: \(notebook.secure)")
-        Logger.log(info: "Token: \(notebook.token)")
+        Logger.log(verbose: "Directory: \(notebook.notebookDirectory.path)")
+        Logger.log(verbose: "URL: \(notebook.url.absoluteURL)")
+        Logger.log(verbose: "Port: \(notebook.port)")
+        Logger.log(verbose: "Secure: \(notebook.secure)")
+        Logger.log(verbose: "Token: \(notebook.token)")
         
         if openOption.value {
-            notebook.open()
+            do {
+                try notebook.open()
+            }
+            catch {
+                Logger.log(warning: error)
+            }
         }
         
         if stopOption.value {

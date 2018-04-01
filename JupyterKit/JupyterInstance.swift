@@ -7,7 +7,10 @@
 //
 
 import Foundation
+
+#if canImport(Cocoa)
 import Cocoa
+#endif
 
 public struct JupyterInstance: Codable {
     public let url: URL
@@ -30,8 +33,12 @@ public struct JupyterInstance: Codable {
         return URL(fileURLWithPath: self.notebook_dir)
     }
     
-    public func open() {
+    public func open() throws {
+        #if canImport(Cocoa)
         NSWorkspace.shared.open(url)
+        #else
+        throw JupyterError.openingNotebookNotSupported
+        #endif
     }
     
     public func stop() throws {

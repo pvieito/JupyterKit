@@ -7,40 +7,23 @@
 //
 
 import Foundation
+import FoundationKit
 
 public class JupyterManager {
     
-    public enum JupyterError: LocalizedError {
-        case executableNotAvailable(String)
-        case jupyterError(String)
-        case noOutput
-        
-        public var errorDescription: String? {
-            
-            switch self {
-            case .executableNotAvailable(let path):
-                return "Jupyter executable not available at “\(path)”."
-            case .jupyterError(let errorString):
-                return "Jupyter Error: \(errorString)."
-            case .noOutput:
-                return "No output."
-            }
-        }
-    }
-    
     // MARK: Private properties and methods.
     
-    private static var jupyterExecutablePath = "/usr/local/bin/jupyter"
+    private static var jupyterDefaultExecutableURL = URL(fileURLWithPath: "/usr/local/bin/jupyter")
 
     private static func getJupyterExecutableURL() throws -> URL {
         
-        let jupyterExecutablePath = JupyterManager.jupyterExecutablePath
+        let jupyterExecutableURL = Process.getExecutableURL(name: jupyterDefaultExecutableURL.lastPathComponent) ?? jupyterDefaultExecutableURL
         
-        guard FileManager.default.isExecutableFile(atPath: jupyterExecutablePath) else {
-            throw JupyterError.executableNotAvailable(jupyterExecutablePath)
+        guard FileManager.default.isExecutableFile(atPath: jupyterExecutableURL.path) else {
+            throw JupyterError.executableNotAvailable(jupyterExecutableURL)
         }
     
-        return URL(fileURLWithPath: jupyterExecutablePath)
+        return jupyterExecutableURL
     }
     
     internal static func launchJupyterWithOutput(arguments: [String]) throws -> String {
@@ -54,7 +37,7 @@ public class JupyterManager {
         task.standardError = errorPipe
         task.arguments = arguments
         
-        try task.run()
+        task.launch()
         
         task.waitUntilExit()
         
@@ -83,7 +66,7 @@ public class JupyterManager {
         task.executableURL = try getJupyterExecutableURL()
         task.arguments = arguments
         
-        try task.run()
+        task.launch()
     }
 
     
@@ -100,7 +83,7 @@ public class JupyterManager {
             return
         }
         
-        notebook.open()
+        try notebook.open()
     }
     
     private func launchNotebook() throws {
@@ -118,19 +101,14 @@ public class JupyterManager {
     
     public func listNotebooks() throws -> [JupyterInstance] {
         
-        let json = try JupyterManager.launchJupyterWithOutput(arguments: ["notebook", "list", "--json"])
+        var json = try JupyterManager.launchJupyterWithOutput(arguments: ["notebook", "list", "--json"])
+        json = "[\(json.replacingOccurrences(of: "\n", with: ","))]"
         
-        let decoder = JSONDecoder()
-        var notebooks: [JupyterInstance] = []
-        
-        json.enumerateLines { (line, _) in
-            
-            if let lineData = line.data(using: .utf8),
-                let notebookInstance = try? decoder.decode(JupyterInstance.self, from: lineData) {
-                notebooks.append(notebookInstance)
-            }
+        guard let jsonData = json.data(using: .utf8) else {
+            throw CocoaError(.coderInvalidValue)
         }
-        
-        return notebooks
+
+        let decoder = JSONDecoder()
+        return try decoder.decode([JupyterInstance].self, from: jsonData)
     }
 }

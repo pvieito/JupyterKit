@@ -13,6 +13,8 @@
 		AA6376DD201FF09700D3EE43 /* JupyterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE463341FDDB43F0078C151 /* JupyterKit.framework */; };
 		AA6376DE201FF09700D3EE43 /* CommandLineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA6376DB201FF08E00D3EE43 /* CommandLineKit.framework */; };
 		AA6376DF201FF09700D3EE43 /* LoggerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA6376B7201FE8D200D3EE43 /* LoggerKit.framework */; };
+		AA64056120718D0000F17D45 /* JupyterError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA64056020718D0000F17D45 /* JupyterError.swift */; };
+		AA64057A20719F2F00F17D45 /* FoundationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA64056D20719B9B00F17D45 /* FoundationKit.framework */; };
 		AA6427711FDD8AA6002877D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6427701FDD8AA6002877D1 /* AppDelegate.swift */; };
 		AA6427751FDD8AA6002877D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA6427741FDD8AA6002877D1 /* Assets.xcassets */; };
 		AA6427781FDD8AA6002877D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA6427761FDD8AA6002877D1 /* Main.storyboard */; };
@@ -50,6 +52,27 @@
 			proxyType = 2;
 			remoteGlobalIDString = 5D06884319674D7D00BBFAAC;
 			remoteInfo = CommandLineKit;
+		};
+		AA64056C20719B9B00F17D45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA64056620719B9B00F17D45 /* FoundationKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AA2563CF1E57639E0037CBED;
+			remoteInfo = FoundationKit;
+		};
+		AA64056E20719B9B00F17D45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA64056620719B9B00F17D45 /* FoundationKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AA912C1A1EE96CF2002DD639;
+			remoteInfo = FoundationKitWatch;
+		};
+		AA64057020719B9B00F17D45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA64056620719B9B00F17D45 /* FoundationKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AAD31D251F883C8800C056DD;
+			remoteInfo = FoundationKitTests;
 		};
 		AAE463391FDDB43F0078C151 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -91,6 +114,8 @@
 		AA6376C7201FEF9800D3EE43 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		AA6376CD201FEFC400D3EE43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA6376D6201FF08E00D3EE43 /* CommandLineKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CommandLineKit.xcodeproj; path = ../CommandLineKit/CommandLineKit.xcodeproj; sourceTree = "<group>"; };
+		AA64056020718D0000F17D45 /* JupyterError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JupyterError.swift; sourceTree = "<group>"; };
+		AA64056620719B9B00F17D45 /* FoundationKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FoundationKit.xcodeproj; path = ../FoundationKit/FoundationKit.xcodeproj; sourceTree = "<group>"; };
 		AA64276D1FDD8AA6002877D1 /* Jupyter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jupyter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA6427701FDD8AA6002877D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA6427741FDD8AA6002877D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -127,6 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA64057A20719F2F00F17D45 /* FoundationKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,9 +192,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AA64056720719B9B00F17D45 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA64056D20719B9B00F17D45 /* FoundationKit.framework */,
+				AA64056F20719B9B00F17D45 /* FoundationKit.framework */,
+				AA64057120719B9B00F17D45 /* FoundationKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		AA6427641FDD8AA6002877D1 = {
 			isa = PBXGroup;
 			children = (
+				AA64056620719B9B00F17D45 /* FoundationKit.xcodeproj */,
 				AA6376D6201FF08E00D3EE43 /* CommandLineKit.xcodeproj */,
 				AA6376B1201FE8D100D3EE43 /* LoggerKit.xcodeproj */,
 				AA3BADF9201E70000082CE06 /* README.md */,
@@ -206,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				AAE463261FDDAD5F0078C151 /* JupyterManager.swift */,
+				AA64056020718D0000F17D45 /* JupyterError.swift */,
 				AAE463411FDDB45B0078C151 /* JupyterInstance.swift */,
 				AAE463371FDDB43F0078C151 /* Info.plist */,
 			);
@@ -326,6 +364,10 @@
 					ProjectRef = AA6376D6201FF08E00D3EE43 /* CommandLineKit.xcodeproj */;
 				},
 				{
+					ProductGroup = AA64056720719B9B00F17D45 /* Products */;
+					ProjectRef = AA64056620719B9B00F17D45 /* FoundationKit.xcodeproj */;
+				},
+				{
 					ProductGroup = AA6376B2201FE8D100D3EE43 /* Products */;
 					ProjectRef = AA6376B1201FE8D100D3EE43 /* LoggerKit.xcodeproj */;
 				},
@@ -359,6 +401,27 @@
 			fileType = wrapper.framework;
 			path = CommandLineKit.framework;
 			remoteRef = AA6376DA201FF08E00D3EE43 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AA64056D20719B9B00F17D45 /* FoundationKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FoundationKit.framework;
+			remoteRef = AA64056C20719B9B00F17D45 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AA64056F20719B9B00F17D45 /* FoundationKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FoundationKit.framework;
+			remoteRef = AA64056E20719B9B00F17D45 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AA64057120719B9B00F17D45 /* FoundationKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = FoundationKitTests.xctest;
+			remoteRef = AA64057020719B9B00F17D45 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -403,6 +466,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA64056120718D0000F17D45 /* JupyterError.swift in Sources */,
 				AAE463421FDDB45B0078C151 /* JupyterInstance.swift in Sources */,
 				AAE463401FDDB4450078C151 /* JupyterManager.swift in Sources */,
 			);
