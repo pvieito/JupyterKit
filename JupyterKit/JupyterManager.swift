@@ -102,8 +102,8 @@ public class JupyterManager {
     public func listNotebooks() throws -> [JupyterInstance] {
         
         var json = try JupyterManager.launchJupyterWithOutput(arguments: ["notebook", "list", "--json"])
-        json = "[\(json.replacingOccurrences(of: "\n", with: ","))]"
-        
+        json = "[\(json.components(separatedBy: .newlines).joined(separator: ","))]"
+
         guard let jsonData = json.data(using: .utf8) else {
             throw CocoaError(.coderInvalidValue)
         }
