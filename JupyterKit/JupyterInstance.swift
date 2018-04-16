@@ -25,6 +25,17 @@ public struct JupyterInstance: Codable {
     let base_url: String
     let notebook_dir: String
     
+    public var sessionURL: URL? {
+        guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
+            return nil
+        }
+        
+        let queryItem = URLQueryItem(name: "token", value: self.token)
+        urlComponents.queryItems = [queryItem]
+        
+        return urlComponents.url
+    }
+    
     public var identifier: String {
         return "\(self.hostname):\(self.port)"
     }
@@ -34,8 +45,12 @@ public struct JupyterInstance: Codable {
     }
     
     public func open() throws {
+        guard let sessionURL = self.sessionURL else {
+            throw JupyterError.openingNotebookNotSupported
+        }
+        
         #if canImport(Cocoa)
-        NSWorkspace.shared.open(url)
+        NSWorkspace.shared.open(sessionURL)
         #else
         throw JupyterError.openingNotebookNotSupported
         #endif

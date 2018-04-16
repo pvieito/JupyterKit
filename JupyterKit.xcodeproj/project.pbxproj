@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA33AFFB2085518E00B118AC /* FoundationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA64056D20719B9B00F17D45 /* FoundationKit.framework */; };
+		AA33AFFC2085518E00B118AC /* FoundationKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AA64056D20719B9B00F17D45 /* FoundationKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AA6376BA201FE8DC00D3EE43 /* LoggerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA6376B7201FE8D200D3EE43 /* LoggerKit.framework */; };
 		AA6376BB201FE8DC00D3EE43 /* LoggerKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AA6376B7201FE8D200D3EE43 /* LoggerKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AA6376C8201FEF9800D3EE43 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6376C7201FEF9800D3EE43 /* main.swift */; };
@@ -25,6 +27,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		AA33AFFD2085518E00B118AC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA64056620719B9B00F17D45 /* FoundationKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = AA2563C41E57639E0037CBED;
+			remoteInfo = FoundationKit;
+		};
 		AA6376B6201FE8D200D3EE43 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AA6376B1201FE8D100D3EE43 /* LoggerKit.xcodeproj */;
@@ -100,6 +109,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				AAE4633C1FDDB43F0078C151 /* JupyterKit.framework in Embed Frameworks */,
+				AA33AFFC2085518E00B118AC /* FoundationKit.framework in Embed Frameworks */,
 				AA6376BB201FE8DC00D3EE43 /* LoggerKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -144,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAE4633B1FDDB43F0078C151 /* JupyterKit.framework in Frameworks */,
+				AA33AFFB2085518E00B118AC /* FoundationKit.framework in Frameworks */,
 				AA6376BA201FE8DC00D3EE43 /* LoggerKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,6 +305,7 @@
 			dependencies = (
 				AAE4633A1FDDB43F0078C151 /* PBXTargetDependency */,
 				AA6376BD201FE8DC00D3EE43 /* PBXTargetDependency */,
+				AA33AFFE2085518E00B118AC /* PBXTargetDependency */,
 			);
 			name = Jupyter;
 			productName = Jupyter;
@@ -475,6 +487,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		AA33AFFE2085518E00B118AC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FoundationKit;
+			targetProxy = AA33AFFD2085518E00B118AC /* PBXContainerItemProxy */;
+		};
 		AA6376BD201FE8DC00D3EE43 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = LoggerKit;

@@ -14,10 +14,11 @@ import CommandLineKit
 let openOption = BoolOption(shortFlag: "o", longFlag: "open", helpMessage: "Open running instances.")
 let stopOption = BoolOption(shortFlag: "k", longFlag: "kill", helpMessage: "Stop all running instances.")
 let verboseOption = BoolOption(shortFlag: "v", longFlag: "verbose", helpMessage: "Verbose mode.")
+let debugOption = BoolOption(shortFlag: "d", longFlag: "debug", helpMessage: "Debug mode.")
 let helpOption = BoolOption(shortFlag: "h", longFlag: "help", helpMessage: "Prints a help message.")
 
 let cli = CommandLineKit.CommandLine()
-cli.addOptions(openOption, stopOption, verboseOption, helpOption)
+cli.addOptions(openOption, stopOption, verboseOption, debugOption, helpOption)
 
 do {
     try cli.parse(strict: true)
@@ -29,11 +30,12 @@ catch {
 
 if helpOption.value {
     cli.printUsage()
-    exit(-1)
+    exit(0)
 }
 
 Logger.logMode = .commandLine
-Logger.logLevel = verboseOption.value ? .debug : .info
+Logger.logLevel = verboseOption.value ? .verbose : .info
+Logger.logLevel = debugOption.value ? .debug : Logger.logLevel
 
 do {
     let notebooks = try JupyterManager.shared.listNotebooks()
@@ -53,6 +55,10 @@ do {
         Logger.log(verbose: "Secure: \(notebook.secure)")
         Logger.log(verbose: "Token: \(notebook.token)")
         
+        if let sessionURL = notebook.sessionURL {
+            Logger.log(debug: "Session URL: \(sessionURL)")
+        }
+
         if openOption.value {
             do {
                 try notebook.open()
