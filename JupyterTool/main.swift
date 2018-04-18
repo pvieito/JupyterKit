@@ -11,7 +11,7 @@ import LoggerKit
 import JupyterKit
 import CommandLineKit
 
-let openOption = BoolOption(shortFlag: "o", longFlag: "open", helpMessage: "Open running instances.")
+let openOption = BoolOption(shortFlag: "o", longFlag: "open", helpMessage: "Open running instances or launches a new one.")
 let stopOption = BoolOption(shortFlag: "k", longFlag: "kill", helpMessage: "Stop all running instances.")
 let verboseOption = BoolOption(shortFlag: "v", longFlag: "verbose", helpMessage: "Verbose mode.")
 let debugOption = BoolOption(shortFlag: "d", longFlag: "debug", helpMessage: "Debug mode.")
@@ -38,7 +38,15 @@ Logger.logLevel = verboseOption.value ? .verbose : .info
 Logger.logLevel = debugOption.value ? .debug : Logger.logLevel
 
 do {
-    let notebooks = try JupyterManager.shared.listNotebooks()
+    var notebooks = try JupyterManager.shared.listNotebooks()
+    
+    if notebooks.isEmpty, openOption.value {
+        try JupyterManager.shared.openNotebook()
+
+        while notebooks.isEmpty {
+            notebooks = try JupyterManager.shared.listNotebooks()
+        }
+    }
     
     guard !notebooks.isEmpty else {
         Logger.log(warning: "No Jupyter Notebook instances running.")

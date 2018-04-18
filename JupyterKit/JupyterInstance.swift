@@ -13,10 +13,18 @@ import Cocoa
 #endif
 
 public struct JupyterInstance: Codable {
+    
+    /// URL to the Jupyter Notebook server.
     public let url: URL
-    public let token: String
-    public let pid: Int
+    
+    /// Port of the Jupyter Notebook server.
     public let port: Int
+    
+    /// Token of the instance.
+    public let token: String
+    
+    /// Process Identifier of the instance.
+    public let pid: Int
 
     public let secure: Bool
     public let password: Bool
@@ -25,6 +33,7 @@ public struct JupyterInstance: Codable {
     let base_url: String
     let notebook_dir: String
     
+    /// Session URL to open in a browser with token parameter.
     public var sessionURL: URL? {
         guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
             return nil
@@ -36,14 +45,19 @@ public struct JupyterInstance: Codable {
         return urlComponents.url
     }
     
+    /// Identifier of the instance.
     public var identifier: String {
         return "\(self.hostname):\(self.port)"
     }
     
+    /// Instance working directory.
     public var notebookDirectory: URL {
         return URL(fileURLWithPath: self.notebook_dir)
     }
     
+    /// Opens the Jupyter Notebook server instance on a browser.
+    ///
+    /// - Throws: Error trying to open the instance.
     public func open() throws {
         guard let sessionURL = self.sessionURL else {
             throw JupyterError.openingNotebookNotSupported
@@ -56,6 +70,9 @@ public struct JupyterInstance: Codable {
         #endif
     }
     
+    /// Stops the Jupyter Notebook server instance.
+    ///
+    /// - Throws: Error trying to stop the server instance.
     public func stop() throws {
         let portString = String(port)
         let _ = try JupyterManager.launchJupyterWithOutput(arguments: ["notebook", "stop", portString])

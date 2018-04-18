@@ -62,8 +62,10 @@ public class JupyterManager {
     internal static func launchJupyter(arguments: [String]) throws {
         
         let task = Process()
-        
+
         task.executableURL = try getJupyterExecutableURL()
+        task.standardOutput = FileHandle.nullDevice
+        task.standardError = FileHandle.nullDevice
         task.arguments = arguments
         
         task.launch()
@@ -72,8 +74,12 @@ public class JupyterManager {
     
     // MARK: Public implementation.
 
+    /// Shared `JupyterManager` object of the process.
     public static var shared = JupyterManager()
     
+    /// Opens the first running notebook instances or launchs a new one.
+    ///
+    /// - Throws: Error trying to open or launching the notebook.
     public func openNotebook() throws {
 
         let notebooks = try self.listNotebooks()
@@ -86,10 +92,16 @@ public class JupyterManager {
         try notebook.open()
     }
     
+    /// Launches a new notebook instance.
+    ///
+    /// - Throws: Error trying launch the notebook.
     private func launchNotebook() throws {
         try JupyterManager.launchJupyter(arguments: ["notebook"])
     }
     
+    /// Stops all the notebooks running instances.
+    ///
+    /// - Throws: Error listing or stopping the running instances.
     public func stopNotebooks() throws {
     
         let notebooks = try self.listNotebooks()
@@ -99,6 +111,10 @@ public class JupyterManager {
         }
     }
     
+    /// Lists all running notebook instances.
+    ///
+    /// - Returns: List of `JupyterInstance` objects.
+    /// - Throws: Error trying to list running instances.
     public func listNotebooks() throws -> [JupyterInstance] {
         
         var json = try JupyterManager.launchJupyterWithOutput(arguments: ["notebook", "list", "--json"])
