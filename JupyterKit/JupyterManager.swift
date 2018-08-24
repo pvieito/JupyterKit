@@ -18,7 +18,9 @@ public class JupyterManager {
     
     private static func getPythonExecutableURL() throws -> URL {
         
-        let jupyterExecutableURL = Process.getExecutableURL(name: pythonDefaultExecutableURL.lastPathComponent) ?? pythonDefaultExecutableURL
+        let jupyterExecutableURL =
+            Process.getExecutableURL(name: pythonDefaultExecutableURL.lastPathComponent) ??
+            pythonDefaultExecutableURL
         
         guard FileManager.default.isExecutableFile(atPath: jupyterExecutableURL.path) else {
             throw JupyterError.executableNotAvailable(jupyterExecutableURL)
