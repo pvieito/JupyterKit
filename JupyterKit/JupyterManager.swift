@@ -55,7 +55,7 @@ public class JupyterManager {
             throw JupyterError.noOutput
         }
         
-        guard errorOuputString == "" else {
+        guard errorOuputString.isEmpty else {
             throw JupyterError.jupyterError(errorOuputString)
         }
         
