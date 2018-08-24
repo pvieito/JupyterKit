@@ -13,8 +13,9 @@ public class JupyterManager {
     
     // MARK: Private properties and methods.
     
-    private static var pythonDefaultExecutableURL = URL(fileURLWithPath: "/usr/bin/python")
-
+    private static let pythonDefaultExecutableURL = URL(fileURLWithPath: "/usr/bin/python")
+    private static let jupyterModuleArguments = ["-m", "jupyter"]
+    
     private static func getPythonExecutableURL() throws -> URL {
         
         let jupyterExecutableURL = Process.getExecutableURL(name: pythonDefaultExecutableURL.lastPathComponent) ?? pythonDefaultExecutableURL
@@ -35,7 +36,7 @@ public class JupyterManager {
         task.executableURL = try getPythonExecutableURL()
         task.standardOutput = outputPipe
         task.standardError = errorPipe
-        task.arguments = ["-m", "jupyter"] + arguments
+        task.arguments = JupyterManager.jupyterModuleArguments + arguments
         
         task.launch()
         
@@ -66,7 +67,7 @@ public class JupyterManager {
         task.executableURL = try getPythonExecutableURL()
         task.standardOutput = FileHandle.nullDevice
         task.standardError = FileHandle.nullDevice
-        task.arguments = arguments
+        task.arguments = JupyterManager.jupyterModuleArguments + arguments
         
         task.launch()
     }
