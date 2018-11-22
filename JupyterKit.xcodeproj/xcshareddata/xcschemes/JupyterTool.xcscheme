@@ -61,6 +61,13 @@
             ReferencedContainer = "container:JupyterKit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "PATH"
+            value = "/usr/libexec:/usr/local/sbin:/usr/local/bin:/Users/pvieito/Library/Python/3.7/bin:/Users/pvieito/Documents/Developer/Scripts/Scripts:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
