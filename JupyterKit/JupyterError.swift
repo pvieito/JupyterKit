@@ -15,7 +15,6 @@ public enum JupyterError: LocalizedError {
     case noOutput
     
     public var errorDescription: String? {
-        
         switch self {
         case .executableNotAvailable(let url):
             return "Jupyter executable not available at “\(url.path)”."

@@ -25,10 +25,10 @@ public struct JupyterInstance: Codable {
     
     /// Process Identifier of the instance.
     public let pid: Int
-
+    
     public let secure: Bool
     public let password: Bool
-
+    
     let hostname: String
     let base_url: String
     let notebook_dir: String
@@ -41,7 +41,6 @@ public struct JupyterInstance: Codable {
         
         let queryItem = URLQueryItem(name: "token", value: self.token)
         urlComponents.queryItems = [queryItem]
-        
         return urlComponents.url
     }
     

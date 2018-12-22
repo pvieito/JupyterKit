@@ -17,11 +17,9 @@ public class JupyterManager {
     private static let jupyterModuleArguments = ["-m", "jupyter"]
     
     private static func getPythonExecutableURL() throws -> URL {
-        
         let jupyterExecutableURL =
             Process.getExecutableURL(name: pythonDefaultExecutableURL.lastPathComponent) ??
             pythonDefaultExecutableURL
-        
         guard FileManager.default.isExecutableFile(atPath: jupyterExecutableURL.path) else {
             throw JupyterError.executableNotAvailable(jupyterExecutableURL)
         }
@@ -30,7 +28,6 @@ public class JupyterManager {
     }
     
     internal static func launchJupyterWithOutput(arguments: [String]) throws -> String {
-        
         let task = Process()
         let outputPipe = Pipe()
         let errorPipe = Pipe()
@@ -41,7 +38,6 @@ public class JupyterManager {
         task.arguments = JupyterManager.jupyterModuleArguments + arguments
         
         task.launch()
-        
         task.waitUntilExit()
         
         let outputData = outputPipe.fileHandleForReading.readDataToEndOfFile()
@@ -63,15 +59,12 @@ public class JupyterManager {
     }
     
     internal static func launchJupyter(arguments: [String]) throws {
-        
         let task = Process()
-
         task.executableURL = try getPythonExecutableURL()
         task.standardOutput = FileHandle.nullDevice
         task.standardError = FileHandle.nullDevice
         task.arguments = JupyterManager.jupyterModuleArguments + arguments
-        
-        task.launch()
+        try task.run()
     }
 
     
@@ -84,7 +77,6 @@ public class JupyterManager {
     ///
     /// - Throws: Error trying to open or launching the notebook.
     public func openNotebook() throws {
-
         let notebooks = try self.listNotebooks()
         
         guard let notebook = notebooks.first else {
@@ -106,9 +98,7 @@ public class JupyterManager {
     ///
     /// - Throws: Error listing or stopping the running instances.
     public func stopNotebooks() throws {
-    
         let notebooks = try self.listNotebooks()
-
         for notebook in notebooks {
             try notebook.stop()
         }
@@ -119,10 +109,8 @@ public class JupyterManager {
     /// - Returns: List of `JupyterInstance` objects.
     /// - Throws: Error trying to list running instances.
     public func listNotebooks() throws -> [JupyterInstance] {
-        
         var json = try JupyterManager.launchJupyterWithOutput(arguments: ["notebook", "list", "--json"])
         json = "[\(json.components(separatedBy: .newlines).joined(separator: ","))]"
-
         guard let jsonData = json.data(using: .utf8) else {
             throw CocoaError(.coderInvalidValue)
         }
