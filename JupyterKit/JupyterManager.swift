@@ -12,59 +12,30 @@ import FoundationKit
 public class JupyterManager {
     
     // MARK: Private properties and methods.
-    
-    private static let pythonDefaultExecutableURL = URL(fileURLWithPath: "/usr/bin/python")
     private static let jupyterModuleArguments = ["-m", "jupyter"]
     
-    private static func getPythonExecutableURL() throws -> URL {
-        let jupyterExecutableURL =
-            Process.getExecutableURL(name: pythonDefaultExecutableURL.lastPathComponent) ??
-            pythonDefaultExecutableURL
-        guard FileManager.default.isExecutableFile(atPath: jupyterExecutableURL.path) else {
-            throw JupyterError.executableNotAvailable(jupyterExecutableURL)
-        }
-    
-        return jupyterExecutableURL
+    private static func getPythonProcess() throws -> Process {
+        return try Process(executableName: "python")
     }
     
     internal static func launchJupyterWithOutput(arguments: [String]) throws -> String {
-        let task = Process()
-        let outputPipe = Pipe()
-        let errorPipe = Pipe()
+        let pythonProcess = try getPythonProcess()
+        pythonProcess.arguments = JupyterManager.jupyterModuleArguments + arguments
+        let outputData = try pythonProcess.runAndGetOutputData()
         
-        task.executableURL = try getPythonExecutableURL()
-        task.standardOutput = outputPipe
-        task.standardError = errorPipe
-        task.arguments = JupyterManager.jupyterModuleArguments + arguments
-        
-        task.launch()
-        task.waitUntilExit()
-        
-        let outputData = outputPipe.fileHandleForReading.readDataToEndOfFile()
-        let errorData = errorPipe.fileHandleForReading.readDataToEndOfFile()
-        
-        guard let outputString = String(data: outputData, encoding: .utf8)?.trimmingCharacters(in: CharacterSet.newlines) else {
+        guard let outputString =
+            String(data: outputData, encoding: .utf8)?.trimmingCharacters(in: CharacterSet.newlines) else {
             throw JupyterError.noOutput
         }
-        
-        guard let errorOuputString = String(data: errorData, encoding: .utf8)?.trimmingCharacters(in: CharacterSet.newlines) else {
-            throw JupyterError.noOutput
-        }
-        
-        guard errorOuputString.isEmpty else {
-            throw JupyterError.jupyterError(errorOuputString)
-        }
-        
         return outputString
     }
     
     internal static func launchJupyter(arguments: [String]) throws {
-        let task = Process()
-        task.executableURL = try getPythonExecutableURL()
-        task.standardOutput = FileHandle.nullDevice
-        task.standardError = FileHandle.nullDevice
-        task.arguments = JupyterManager.jupyterModuleArguments + arguments
-        try task.run()
+        let pythonProcess = try getPythonProcess()
+        pythonProcess.standardOutput = FileHandle.nullDevice
+        pythonProcess.standardError = FileHandle.nullDevice
+        pythonProcess.arguments = JupyterManager.jupyterModuleArguments + arguments
+        try pythonProcess.run()
     }
 
     
