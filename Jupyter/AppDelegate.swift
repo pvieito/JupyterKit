@@ -14,12 +14,10 @@ import JupyterKit
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        
         self.openDocument(self)
     }
     
     @IBAction func openDocument(_ sender: Any?) {
-        
         do {
             try JupyterManager.shared.openNotebook()
         }
@@ -30,7 +28,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
-        
         do {
             try JupyterManager.shared.stopNotebooks()
             Logger.log(info: "Jupyter has been terminated.")

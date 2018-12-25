@@ -132,6 +132,7 @@
 		AA6427771FDD8AA6002877D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AA6427791FDD8AA6002877D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA64277A1FDD8AA6002877D1 /* Jupyter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Jupyter.entitlements; sourceTree = "<group>"; };
+		AA7CA5F921D2D3EE00007A18 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		AAE463261FDDAD5F0078C151 /* JupyterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JupyterManager.swift; sourceTree = "<group>"; };
 		AAE463341FDDB43F0078C151 /* JupyterKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JupyterKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE463371FDDB43F0078C151 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -220,6 +221,7 @@
 				AA6376D6201FF08E00D3EE43 /* CommandLineKit.xcodeproj */,
 				AA6376B1201FE8D100D3EE43 /* LoggerKit.xcodeproj */,
 				AA3BADF9201E70000082CE06 /* README.md */,
+				AA7CA5F921D2D3EE00007A18 /* Package.swift */,
 				AA64276F1FDD8AA6002877D1 /* Jupyter */,
 				AAE463351FDDB43F0078C151 /* JupyterKit */,
 				AA6376C6201FEF9800D3EE43 /* JupyterTool */,
