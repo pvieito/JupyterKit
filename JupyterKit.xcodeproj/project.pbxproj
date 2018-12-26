@@ -197,13 +197,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AA6376DC201FF09700D3EE43 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		AA64056720719B9B00F17D45 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,7 +219,6 @@
 				AAE463351FDDB43F0078C151 /* JupyterKit */,
 				AA6376C6201FEF9800D3EE43 /* JupyterTool */,
 				AA64276E1FDD8AA6002877D1 /* Products */,
-				AA6376DC201FF09700D3EE43 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
