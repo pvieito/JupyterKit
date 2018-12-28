@@ -38,16 +38,12 @@ Logger.logLevel = verboseOption.value ? .verbose : .info
 Logger.logLevel = debugOption.value ? .debug : Logger.logLevel
 
 do {
-    var notebooks = try JupyterManager.shared.listNotebooks()
-    
+    var notebooks = try JupyterManager.listNotebookServers()
     if notebooks.isEmpty, openOption.value {
-        try JupyterManager.shared.openNotebook()
-
-        while notebooks.isEmpty {
-            notebooks = try JupyterManager.shared.listNotebooks()
-        }
+        try JupyterManager.launchNotebookServer(launchBrowser: false)
     }
-    
+    notebooks = try JupyterManager.listNotebookServers()
+
     guard !notebooks.isEmpty else {
         Logger.log(warning: "No Jupyter Notebook instances running.")
         exit(0)
@@ -88,6 +84,6 @@ do {
     }
 }
 catch {
-    Logger.log(error: error)
+    Logger.log(fatalError: error)
 }
 

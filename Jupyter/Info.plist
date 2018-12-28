@@ -28,5 +28,10 @@
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>LSEnvironment</key>
+	<dict>
+		<key>PATH</key>
+		<string>/Users/pvieito/Library/Python/3.7/bin:/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+	</dict>
 </dict>
 </plist>

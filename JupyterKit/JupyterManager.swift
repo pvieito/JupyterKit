@@ -10,8 +10,6 @@ import Foundation
 import FoundationKit
 
 public class JupyterManager {
-    
-    // MARK: Private properties and methods.
     private static let jupyterModuleArguments = ["-m", "jupyter"]
     
     private static func getPythonProcess() throws -> Process {
@@ -22,10 +20,9 @@ public class JupyterManager {
         let pythonProcess = try getPythonProcess()
         pythonProcess.arguments = JupyterManager.jupyterModuleArguments + arguments
         let outputData = try pythonProcess.runAndGetOutputData()
-        
         guard let outputString =
             String(data: outputData, encoding: .utf8)?.trimmingCharacters(in: CharacterSet.newlines) else {
-            throw JupyterError.noOutput
+                throw JupyterError.noOutput
         }
         return outputString
     }
@@ -37,56 +34,63 @@ public class JupyterManager {
         pythonProcess.arguments = JupyterManager.jupyterModuleArguments + arguments
         try pythonProcess.run()
     }
+}
 
-    
-    // MARK: Public implementation.
-
-    /// Shared `JupyterManager` object of the process.
-    public static var shared = JupyterManager()
-    
-    /// Opens the first running notebook instances or launchs a new one.
+extension JupyterManager {
+    /// Launches a new notebook server.
     ///
-    /// - Throws: Error trying to open or launching the notebook.
-    public func openNotebook() throws {
-        let notebooks = try self.listNotebooks()
+    /// - Throws: Error trying launch the notebook server.
+    public static func launchNotebookServer(
+        launchBrowser: Bool = false,
+        ip: String? = nil,
+        port: Int? = nil,
+        notebookDirectoryURL: URL? = nil
+    ) throws {
+        var arguments = ["notebook"]
         
-        guard let notebook = notebooks.first else {
-            try self.launchNotebook()
-            return
+        if let ip = ip {
+            arguments.append("--ip=\(ip)")
+        }
+        if let port = port {
+            arguments.append("--port=\(port)")
+        }
+        if let notebookDirectoryURL = notebookDirectoryURL {
+            arguments.append("--notebook-dir=\(notebookDirectoryURL.path)")
+        }
+        if !launchBrowser {
+            arguments.append("--no-browser")
         }
         
-        try notebook.open()
+        var notebooks = try listNotebookServers()
+        let initalNotebookServersCount = notebooks.count
+        try JupyterManager.launchJupyter(arguments: arguments)
+        while notebooks.count == initalNotebookServersCount {
+            notebooks = try listNotebookServers()
+        }
     }
     
-    /// Launches a new notebook instance.
+    /// Stops all the notebooks running servers.
     ///
-    /// - Throws: Error trying launch the notebook.
-    private func launchNotebook() throws {
-        try JupyterManager.launchJupyter(arguments: ["notebook"])
-    }
-    
-    /// Stops all the notebooks running instances.
-    ///
-    /// - Throws: Error listing or stopping the running instances.
-    public func stopNotebooks() throws {
-        let notebooks = try self.listNotebooks()
+    /// - Throws: Error listing or stopping the running servers.
+    public static func stopNotebookServers() throws {
+        let notebooks = try listNotebookServers()
         for notebook in notebooks {
             try notebook.stop()
         }
     }
     
-    /// Lists all running notebook instances.
+    /// Lists all running notebook servers.
     ///
     /// - Returns: List of `JupyterInstance` objects.
-    /// - Throws: Error trying to list running instances.
-    public func listNotebooks() throws -> [JupyterInstance] {
+    /// - Throws: Error trying to list running servers.
+    public static func listNotebookServers() throws -> [JupyterNotebookServer] {
         var json = try JupyterManager.launchJupyterWithOutput(arguments: ["notebook", "list", "--json"])
         json = "[\(json.components(separatedBy: .newlines).joined(separator: ","))]"
         guard let jsonData = json.data(using: .utf8) else {
             throw CocoaError(.coderInvalidValue)
         }
-
+        
         let decoder = JSONDecoder()
-        return try decoder.decode([JupyterInstance].self, from: jsonData)
+        return try decoder.decode([JupyterNotebookServer].self, from: jsonData)
     }
 }

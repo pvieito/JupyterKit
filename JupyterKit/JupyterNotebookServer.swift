@@ -12,8 +12,7 @@ import Foundation
 import Cocoa
 #endif
 
-public struct JupyterInstance: Codable {
-    
+public struct JupyterNotebookServer: Codable {
     /// URL to the Jupyter Notebook server.
     public let url: URL
     
@@ -53,7 +52,9 @@ public struct JupyterInstance: Codable {
     public var notebookDirectory: URL {
         return URL(fileURLWithPath: self.notebook_dir)
     }
-    
+}
+
+extension JupyterNotebookServer {
     /// Opens the Jupyter Notebook server instance on a browser.
     ///
     /// - Throws: Error trying to open the instance.
@@ -74,6 +75,6 @@ public struct JupyterInstance: Codable {
     /// - Throws: Error trying to stop the server instance.
     public func stop() throws {
         let portString = String(port)
-        let _ = try JupyterManager.launchJupyterWithOutput(arguments: ["notebook", "stop", portString])
+        try JupyterManager.launchJupyter(arguments: ["notebook", "stop", portString])
     }
 }

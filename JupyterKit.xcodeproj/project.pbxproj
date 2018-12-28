@@ -23,7 +23,7 @@
 		AAE4633B1FDDB43F0078C151 /* JupyterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE463341FDDB43F0078C151 /* JupyterKit.framework */; };
 		AAE4633C1FDDB43F0078C151 /* JupyterKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAE463341FDDB43F0078C151 /* JupyterKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AAE463401FDDB4450078C151 /* JupyterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE463261FDDAD5F0078C151 /* JupyterManager.swift */; };
-		AAE463421FDDB45B0078C151 /* JupyterInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE463411FDDB45B0078C151 /* JupyterInstance.swift */; };
+		AAE463421FDDB45B0078C151 /* JupyterNotebookServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE463411FDDB45B0078C151 /* JupyterNotebookServer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,7 +136,7 @@
 		AAE463261FDDAD5F0078C151 /* JupyterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JupyterManager.swift; sourceTree = "<group>"; };
 		AAE463341FDDB43F0078C151 /* JupyterKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JupyterKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE463371FDDB43F0078C151 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AAE463411FDDB45B0078C151 /* JupyterInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JupyterInstance.swift; sourceTree = "<group>"; };
+		AAE463411FDDB45B0078C151 /* JupyterNotebookServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JupyterNotebookServer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,8 +248,8 @@
 			isa = PBXGroup;
 			children = (
 				AAE463261FDDAD5F0078C151 /* JupyterManager.swift */,
+				AAE463411FDDB45B0078C151 /* JupyterNotebookServer.swift */,
 				AA64056020718D0000F17D45 /* JupyterError.swift */,
-				AAE463411FDDB45B0078C151 /* JupyterInstance.swift */,
 				AAE463371FDDB43F0078C151 /* Info.plist */,
 			);
 			path = JupyterKit;
@@ -476,7 +476,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA64056120718D0000F17D45 /* JupyterError.swift in Sources */,
-				AAE463421FDDB45B0078C151 /* JupyterInstance.swift in Sources */,
+				AAE463421FDDB45B0078C151 /* JupyterNotebookServer.swift in Sources */,
 				AAE463401FDDB4450078C151 /* JupyterManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
