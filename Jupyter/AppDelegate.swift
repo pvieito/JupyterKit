@@ -17,18 +17,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func openDocument(_ sender: Any?) {
-        do {
-            let notebookServers = try JupyterManager.listNotebookServers()
-            if let notebookServer = notebookServers.first {
-                try notebookServer.open()
+        DispatchQueue.global(qos: .background).async {
+            do {
+                let notebookServers = try JupyterManager.listNotebookServers()
+                if let notebookServer = notebookServers.first {
+                    try notebookServer.open()
+                }
+                else {
+                    try JupyterManager.launchNotebookServer(launchBrowser: true)
+                }
             }
-            else {
-                try JupyterManager.launchNotebookServer(launchBrowser: true)
+            catch {
+                Logger.log(error: error)
+                NSApplication.shared.presentError(error)
             }
-        }
-        catch {
-            Logger.log(error: error)
-            NSApplication.shared.presentError(error)
         }
     }
     
