@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.1
 
 import PackageDescription
 
@@ -32,6 +32,10 @@ let package = Package(
             name: "JupyterKit",
             dependencies: ["FoundationKit"],
             path: "JupyterKit"
+        ),
+        .testTarget(
+            name: "JupyterKitTests",
+            dependencies: ["JupyterKit"]
         )
     ]
 )

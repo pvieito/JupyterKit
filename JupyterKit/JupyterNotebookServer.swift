@@ -7,10 +7,7 @@
 //
 
 import Foundation
-
-#if canImport(Cocoa)
-import Cocoa
-#endif
+import FoundationKit
 
 public struct JupyterNotebookServer: Codable {
     /// URL to the Jupyter Notebook server.
@@ -63,11 +60,7 @@ extension JupyterNotebookServer {
             throw JupyterError.openingNotebookNotSupported
         }
         
-        #if canImport(Cocoa)
-        NSWorkspace.shared.open(sessionURL)
-        #else
-        throw JupyterError.openingNotebookNotSupported
-        #endif
+        try sessionURL.open()
     }
     
     /// Stops the Jupyter Notebook server instance.

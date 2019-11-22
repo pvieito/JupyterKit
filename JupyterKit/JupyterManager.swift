@@ -12,19 +12,20 @@ import FoundationKit
 public class JupyterManager {
     private static let jupyterModuleArguments = ["-m", "jupyter"]
     
-    private static func getPythonProcess() throws -> Process {
-        return try Process(executableName: "python")
+    internal static func getPythonProcess() throws -> Process {
+        do {
+            return try Process(executableName: "python3")
+        }
+        catch {
+            return try Process(executableName: "python")
+        }
     }
     
-    internal static func launchJupyterWithOutput(arguments: [String]) throws -> String {
+    private static func runJupyterAndGetOutput(arguments: [String]) throws -> String {
         let pythonProcess = try getPythonProcess()
+        pythonProcess.standardError = FileHandle.nullDevice
         pythonProcess.arguments = JupyterManager.jupyterModuleArguments + arguments
-        let outputData = try pythonProcess.runAndGetOutputData()
-        guard let outputString =
-            String(data: outputData, encoding: .utf8)?.trimmingCharacters(in: CharacterSet.newlines) else {
-                throw JupyterError.noOutput
-        }
-        return outputString
+        return try pythonProcess.runAndGetOutputString()
     }
     
     internal static func launchJupyter(arguments: [String]) throws {
@@ -84,7 +85,7 @@ extension JupyterManager {
     /// - Returns: List of `JupyterInstance` objects.
     /// - Throws: Error trying to list running servers.
     public static func listNotebookServers() throws -> [JupyterNotebookServer] {
-        var json = try JupyterManager.launchJupyterWithOutput(arguments: ["notebook", "list", "--json"])
+        var json = try JupyterManager.runJupyterAndGetOutput(arguments: ["notebook", "list", "--json"])
         json = "[\(json.components(separatedBy: .newlines).joined(separator: ","))]"
         guard let jsonData = json.data(using: .utf8) else {
             throw CocoaError(.coderInvalidValue)
