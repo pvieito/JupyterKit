@@ -16,8 +16,40 @@ class TabulaKitTests: XCTestCase {
         if let pythonProcess = try? JupyterManager.getPythonProcess() {
             pythonProcess.arguments = ["-m", "jupyter", "notebook", "list", "--json"]
             if let _ = try? pythonProcess.runAndGetOutputString() {
-                let _ = try JupyterManager.listNotebookServers()
-                return
+                do {
+                    try JupyterManager.stopNotebookServers()
+                    try JupyterManager.launchNotebookServer()
+                    let l1 = try JupyterManager.listNotebookServers()
+                    
+                    XCTAssertEqual(l1.count, 1)
+                    
+                    try JupyterManager.launchNotebookServer()
+                    try JupyterManager.launchNotebookServer()
+                    let l2 = try JupyterManager.listNotebookServers()
+                    
+                    XCTAssertEqual(l2.count, 3)
+                    
+                    let l2s = l2.last!
+                    try l2s.stop()
+                    let l3 = try JupyterManager.listNotebookServers()
+                    
+                    let l2Set = Set(l2[0...1].map({ $0.identifier }))
+                    let l3Set = Set(l3.map({ $0.identifier }))
+
+                    XCTAssertEqual(l3.count, 2)
+                    XCTAssertEqual(l3Set, l2Set)
+                    XCTAssertTrue(l3Set.intersection(Set([l2s.identifier])).isEmpty)
+
+                    try JupyterManager.stopNotebookServers()
+                    let l4 = try JupyterManager.listNotebookServers()
+                    
+                    XCTAssertEqual(l4.count, 0)
+                    return
+                }
+                catch {
+                    try? JupyterManager.stopNotebookServers()
+                    throw error
+                }
             }
         }
         
