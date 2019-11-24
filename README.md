@@ -1,6 +1,6 @@
 #  JupyterKit
 
-Swift framework to interact with Jupyter like listing running instances of the Jupyter Notebook server, launching new instances or terminating them.
+Swift framework and tool to launch and control Jupyter Notebooks.
 
 ## Requirements
 
