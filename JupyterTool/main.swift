@@ -42,7 +42,7 @@ struct JupyterTool: ParsableCommand {
             
             guard !notebooks.isEmpty else {
                 Logger.log(warning: "No Jupyter Notebook instances running.")
-                Foundation.exit(0)
+                return
             }
             
             Logger.log(important: "Jupyter Notebooks (\(notebooks.count))")
