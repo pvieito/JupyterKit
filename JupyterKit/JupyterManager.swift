@@ -10,7 +10,7 @@ import Foundation
 import FoundationKit
 
 public class JupyterManager {
-    private static let jupyterModuleArguments = ["-m", "jupyter"]
+    private static let jupyterNotebookModuleArguments = ["-m", "notebook"]
     
     internal static func getPythonProcess() throws -> Process {
         do {
@@ -21,18 +21,18 @@ public class JupyterManager {
         }
     }
     
-    private static func runJupyterAndGetOutput(arguments: [String]) throws -> String {
+    private static func runJupyterNotebookAndGetOutput(arguments: [String]) throws -> String {
         let pythonProcess = try getPythonProcess()
         pythonProcess.standardError = FileHandle.nullDevice
-        pythonProcess.arguments = JupyterManager.jupyterModuleArguments + arguments
+        pythonProcess.arguments = JupyterManager.jupyterNotebookModuleArguments + arguments
         return try pythonProcess.runAndGetOutputString()
     }
     
-    internal static func launchJupyter(arguments: [String]) throws {
+    internal static func launchJupyterNotebook(arguments: [String]) throws {
         let pythonProcess = try getPythonProcess()
         pythonProcess.standardOutput = FileHandle.nullDevice
         pythonProcess.standardError = FileHandle.nullDevice
-        pythonProcess.arguments = JupyterManager.jupyterModuleArguments + arguments
+        pythonProcess.arguments = JupyterManager.jupyterNotebookModuleArguments + arguments
         try pythonProcess.run()
     }
 }
@@ -47,7 +47,7 @@ extension JupyterManager {
         port: Int? = nil,
         notebookDirectoryURL: URL? = nil
     ) throws {
-        var arguments = ["notebook"]
+        var arguments: [String] = []
         
         if let ip = ip {
             arguments.append("--ip=\(ip)")
@@ -64,7 +64,7 @@ extension JupyterManager {
         
         var notebooks = try listNotebookServers()
         let initalNotebookServersCount = notebooks.count
-        try JupyterManager.launchJupyter(arguments: arguments)
+        try JupyterManager.launchJupyterNotebook(arguments: arguments)
         while notebooks.count == initalNotebookServersCount {
             notebooks = try listNotebookServers()
         }
@@ -85,7 +85,7 @@ extension JupyterManager {
     /// - Returns: List of `JupyterInstance` objects.
     /// - Throws: Error trying to list running servers.
     public static func listNotebookServers() throws -> [JupyterNotebookServer] {
-        var json = try JupyterManager.runJupyterAndGetOutput(arguments: ["notebook", "list", "--json"])
+        var json = try JupyterManager.runJupyterNotebookAndGetOutput(arguments: ["list", "--json"])
         json = "[\(json.components(separatedBy: .newlines).joined(separator: ","))]"
         guard let jsonData = json.data(using: .utf8) else {
             throw CocoaError(.coderInvalidValue)

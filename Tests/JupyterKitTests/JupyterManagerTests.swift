@@ -14,7 +14,7 @@ import XCTest
 class TabulaKitTests: XCTestCase {
     func testJupyterManager() throws {
         if let pythonProcess = try? JupyterManager.getPythonProcess() {
-            pythonProcess.arguments = ["-m", "jupyter", "notebook", "list", "--json"]
+            pythonProcess.arguments = ["-m", "notebook", "list", "--json"]
             if let _ = try? pythonProcess.runAndGetOutputString() {
                 do {
                     try JupyterManager.stopNotebookServers()

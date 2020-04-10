@@ -68,6 +68,6 @@ extension JupyterNotebookServer {
     /// - Throws: Error trying to stop the server instance.
     public func stop() throws {
         let portString = String(port)
-        try JupyterManager.launchJupyter(arguments: ["notebook", "stop", portString])
+        try JupyterManager.launchJupyterNotebook(arguments: ["stop", portString])
     }
 }
