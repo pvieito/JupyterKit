@@ -19,5 +19,10 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
       - uses: actions/checkout@v1
+      - name: Install Python Setuptools
+        run: sudo apt-get install -y python3-setuptools
+        if: runner.os == 'Linux'
+      - name: Install Jupyter Notebook
+        run: python3 -m pip install notebook
       - name: Test
         run: swift test

@@ -17,16 +17,16 @@ struct JupyterTool: ParsableCommand {
     }
     
     @Flag(name: .shortAndLong, help: "Open running instances or launches a new one.")
-    var open: Bool
+    var `open`: Bool = false
     
     @Flag(name: .shortAndLong, help: "Stop all running instances.")
-    var kill: Bool
+    var kill: Bool = false
     
     @Flag(name: .shortAndLong, help: "Verbose mode.")
-    var verbose: Bool
+    var verbose: Bool = false
     
     @Flag(name: .shortAndLong, help: "Debug mode.")
-    var debug: Bool
+    var debug: Bool = false
     
     func run() throws {
         do {
