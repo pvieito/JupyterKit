@@ -16,9 +16,12 @@ struct JupyterTool: ParsableCommand {
         return CommandConfiguration(commandName: String(describing: Self.self))
     }
     
-    @Flag(name: .shortAndLong, help: "Open running instances or launches a new one.")
+    @Flag(name: .shortAndLong, help: "Open running instances or launch a new one.")
     var `open`: Bool = false
-    
+
+    @Flag(name: .shortAndLong, help: "Lauch a new instance.")
+    var new: Bool = false
+
     @Flag(name: .shortAndLong, help: "Stop all running instances.")
     var kill: Bool = false
     
@@ -35,7 +38,7 @@ struct JupyterTool: ParsableCommand {
             Logger.logLevel = self.debug ? .debug : Logger.logLevel
             
             var notebooks = try JupyterManager.listNotebookServers()
-            if notebooks.isEmpty, self.open {
+            if (notebooks.isEmpty && self.open) || self.new {
                 try JupyterManager.launchNotebookServer(launchBrowser: false)
             }
             notebooks = try JupyterManager.listNotebookServers()
