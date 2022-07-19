@@ -11,7 +11,7 @@ import FoundationKit
 import XCTest
 @testable import JupyterKit
 
-class TabulaKitTests: XCTestCase {
+class JupyterKitTests: XCTestCase {
     func testJupyterManager() throws {
         do {
             try JupyterManager.stopNotebookServers()
