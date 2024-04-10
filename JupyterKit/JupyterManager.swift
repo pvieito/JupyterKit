@@ -8,28 +8,29 @@
 
 import Foundation
 import FoundationKit
+import PythonKit
 
 public class JupyterManager {
     private static let jupyterNotebookModuleArguments = ["-m", "notebook"]
     
-    internal static func getPythonProcess() throws -> Process {
-        do {
-            return try Process(executableName: "python3")
+    internal static func loadPythonProcess() throws -> Process {
+        try PythonLibrary.loadLibrary()
+        let sys = try Python.attemptImport("sys")
+        guard let executable = sys.checking.executable, let executablePath = String(executable) else {
+            throw NSError(description: "Python executable not available.")
         }
-        catch {
-            return try Process(executableName: "python")
-        }
+        return Process(executableURL: executablePath.pathURL)
     }
     
     private static func runJupyterNotebookAndGetOutput(arguments: [String]) throws -> String {
-        let pythonProcess = try getPythonProcess()
+        let pythonProcess = try loadPythonProcess()
         pythonProcess.standardError = FileHandle.nullDevice
         pythonProcess.arguments = JupyterManager.jupyterNotebookModuleArguments + arguments
         return try pythonProcess.runAndGetOutputString()
     }
     
     internal static func launchJupyterNotebook(arguments: [String]) throws {
-        let pythonProcess = try getPythonProcess()
+        let pythonProcess = try loadPythonProcess()
         pythonProcess.standardOutput = FileHandle.nullDevice
         pythonProcess.standardError = FileHandle.nullDevice
         pythonProcess.arguments = JupyterManager.jupyterNotebookModuleArguments + arguments

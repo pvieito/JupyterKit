@@ -1,5 +1,5 @@
 //
-//  main.swift
+//  JupyterTool.swift
 //  JupyterTool
 //
 //  Created by Pedro José Pereira Vieito on 30/1/18.
@@ -11,6 +11,7 @@ import LoggerKit
 import JupyterKit
 import ArgumentParser
 
+@main
 struct JupyterTool: ParsableCommand {
     static var configuration: CommandConfiguration {
         return CommandConfiguration(commandName: String(describing: Self.self))
@@ -87,5 +88,3 @@ struct JupyterTool: ParsableCommand {
         }
     }
 }
-
-JupyterTool.main()

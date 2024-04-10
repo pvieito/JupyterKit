@@ -22,12 +22,12 @@ public struct JupyterNotebookServer: Codable {
     /// Process Identifier of the instance.
     public let pid: Int
     
+    public let version: String
     public let secure: Bool
     public let password: Bool
     
     let hostname: String
-    let base_url: String
-    let notebook_dir: String
+    let root_dir: String
     
     /// Session URL to open in a browser with token parameter.
     public var sessionURL: URL? {
@@ -47,7 +47,7 @@ public struct JupyterNotebookServer: Codable {
     
     /// Instance working directory.
     public var notebookDirectory: URL {
-        return URL(fileURLWithPath: self.notebook_dir)
+        return URL(fileURLWithPath: self.root_dir)
     }
 }
 
