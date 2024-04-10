@@ -1,4 +1,4 @@
-// swift-tools-version:5.9
+// swift-tools-version:5.7
 
 import PackageDescription
 
@@ -21,7 +21,7 @@ let package = Package(
         .package(url: "git@github.com:pvieito/LoggerKit.git", branch: "master"),
         .package(url: "git@github.com:pvieito/FoundationKit.git", branch: "master"),
         .package(url: "git@github.com:pvieito/PythonKit.git", branch: "master"),
-        .package(url: "https://github.com/apple/swift-argument-parser", from: "0.0.1"),
+        .package(url: "https://github.com/apple/swift-argument-parser", from: "1.0.0"),
     ],
     targets: [
         .executableTarget(
